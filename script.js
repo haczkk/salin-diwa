@@ -130,7 +130,20 @@ function switchAuthTab(target) {
 
 /* Password-visibility toggle */
 function togglePwdVisibility(btn) {
-  const input = btn.previousElementSibling;
+  // Find the nearest input element within the same label/container
+  let input = btn.previousElementSibling;
+  while (input && input.tagName !== 'INPUT') {
+    input = input.previousElementSibling;
+  }
+  let input = btn.previousElementSibling;
+  while (input && input.tagName !== 'INPUT') {
+    input = input.previousElementSibling;
+  }
+  // Fallback: search within the parent element if not found
+  if (!input) {
+    input = btn.parentElement.querySelector('input[type="password"], input[type="text"]');
+  }
+  if (!input) return; // safety check
   const newType = input.type === 'password' ? 'text' : 'password';
   input.type = newType;
   btn.textContent = newType === 'password' ? '👁️' : '👀';
