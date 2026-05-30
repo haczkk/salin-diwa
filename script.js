@@ -135,10 +135,6 @@ function togglePwdVisibility(btn) {
   while (input && input.tagName !== 'INPUT') {
     input = input.previousElementSibling;
   }
-  let input = btn.previousElementSibling;
-  while (input && input.tagName !== 'INPUT') {
-    input = input.previousElementSibling;
-  }
   // Fallback: search within the parent element if not found
   if (!input) {
     input = btn.parentElement.querySelector('input[type="password"], input[type="text"]');
